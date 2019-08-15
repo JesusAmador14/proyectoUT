@@ -17,6 +17,7 @@ class CreateTableTools extends Migration
             $table->integer('id')->autoIncrement();
             $table->string('tool', 100);
             $table->integer('quantity');
+            $table->integer('borrowed')->default(0);
             $table->timestamps();
         });
     }

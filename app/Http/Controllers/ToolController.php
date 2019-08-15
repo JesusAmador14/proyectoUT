@@ -40,7 +40,17 @@ class ToolController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tool = new Tool;
+        $tool->tool = $request->name;
+        $tool->quantity = $request->quantity;
+        $status = false;
+        try {
+            $tool->save();
+            $status = "Se registró correctamente";
+            return redirect("tools")->with("status", $status);
+        } catch (Exception $e) {
+            return redirect("tools")->with("status", $e);
+        }
     }
 
     /**
@@ -62,7 +72,7 @@ class ToolController extends Controller
      */
     public function edit(Tool $tool)
     {
-        //
+        
     }
 
     /**
@@ -72,9 +82,15 @@ class ToolController extends Controller
      * @param  \App\Tool  $tool
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tool $tool)
+    public function update(Request $request, $id)
     {
-        //
+        $tool = Tool::find($id);
+        $tool->quantity = $request->quantity;
+        if ($tool->save()) {
+            return  json_encode('Herramienta actualizada');
+        } else {
+            return json_encode('Herramienta no actualizada');
+        }
     }
 
     /**

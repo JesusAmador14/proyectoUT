@@ -28,7 +28,7 @@
                     <h2>
                         Inventario
                     </h2>
-                    <button type="button" data-tooltip="tooltip" data-placement="top" title="Nuevo estudiante" class="btn bg-green btn-circle waves-effect waves-circle waves-float right" data-toggle="modal" data-target="#createModal">
+                    <button type="button" data-tooltip="tooltip" data-placement="top" title="Nueva herramienta" class="btn bg-green btn-circle waves-effect waves-circle waves-float right" data-toggle="modal" data-target="#createModal">
                         <i class="material-icons">add</i>
                     </button>
                 </div>
@@ -36,16 +36,30 @@
                     <table id="dataTable" class="table table-bordered table-striped table-hover dataTable">
                         <thead>
                             <tr>
-                                <th>Número de control</th>
+                                <th>ID</th>
                                 <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>Grado y Grupo</th>
-                                <th>Maestro</th>
+                                <th>Cantidad</th>
+                                <th>Prestada</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-
+                            @foreach($tools as $tool)
+                            <tr data-id="{{$tool->id}}">
+                                <th scope="row">{{ $tool->id }}</th>
+                                <th>{{ $tool->tool }}</th>
+                                <th>{{ $tool->quantity }}</th>
+                                <th>{{ $tool->borrowed }}</th>
+                                <th>
+                                    <button type="button" id="editTool" data-toggle="modal" data-tooltip="tooltip" data-placement="top" data-target="#editModal" title="Editar" class="btn btn-success btn-circle waves-effect waves-circle waves-float">
+                                        <i class="material-icons">edit</i>
+                                    </button>
+                                    <button type="button" id="deleteTool" data-toggle="modal" data-tooltip="tooltip" data-placement="top" title="Eliminar" data-target="#deleteModal" class="btn bg-red btn-circle waves-effect waves-circle waves-float">
+                                        <i class="material-icons">delete_sweep</i>
+                                    </button>
+                                </th>
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -54,5 +68,6 @@
     </div>
     @include('tools.create')
     @include('tools.delete')
+    @include('tools.edit')
 </div>
 @endsection
