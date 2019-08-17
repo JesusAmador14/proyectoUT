@@ -76,6 +76,12 @@
 							<span>Herramientas</span>
 						</a>
 					</li>
+					<li>
+						<a href="{{ url('/loans') }}">
+							<i class="material-icons">folder_shared</i>
+							<span>Préstamos</span>
+						</a>
+					</li>
 				</ul>
 			</div>
 			<!-- #Menu -->
